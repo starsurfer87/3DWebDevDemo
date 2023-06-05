@@ -4,7 +4,7 @@ import Stats from 'three/addons/libs/stats.module.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-let camera, scene, renderer;
+let camera, scene, renderer, controls;
 
 const mixers = [];
 
@@ -102,7 +102,16 @@ function init() {
     container.appendChild( renderer.domElement );
     renderer.shadowMap.enabled = true;
 
+    // INTERACTIONS
+
     window.addEventListener( 'resize', onWindowResize );
+
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.enablePan = false;
+    controls.maxPolarAngle = Math.PI/2 - 0.1;
+    // TODO: add in max/min values for zoom 
+    // (may also need to edit max values for rotation)
+
 }
 
 function animate() {
