@@ -1,7 +1,5 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import Stats from 'three/addons/libs/stats.module.js';
-import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 let camera, scene, renderer, controls;
@@ -56,6 +54,8 @@ function init() {
 
     dirLight.shadow.camera.far = 3500;
     dirLight.shadow.bias = - 0.0001;
+    
+    // TODO: edit settings to suit final scene
 
     const dirLightHelper = new THREE.DirectionalLightHelper( dirLight, 10 );
     scene.add( dirLightHelper );
