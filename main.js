@@ -8,13 +8,16 @@ const mixers = [];
 
 const clock = new THREE.Clock();
 
+const SIZE = 0.95;
+const ASPECT_RATIO = 4/3;
+
 init();
 animate();
 
 function init() {
     const container = document.getElementById( '3D container' );
 
-    camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 5000 );
+    camera = new THREE.PerspectiveCamera( 30, ASPECT_RATIO, 1, 5000 );
     camera.position.set( 0, 3, 20);
 
     scene = new THREE.Scene();
@@ -98,13 +101,13 @@ function init() {
 
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    updateRendererSize();
     container.appendChild( renderer.domElement );
     renderer.shadowMap.enabled = true;
 
     // INTERACTIONS
 
-    window.addEventListener( 'resize', onWindowResize );
+    window.addEventListener( 'resize', updateRendererSize );
 
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enablePan = false;
@@ -112,6 +115,10 @@ function init() {
     // TODO: add in max/min values for zoom 
     // (may also need to edit max values for rotation)
 
+}
+
+function updateRendererSize() {
+    renderer.setSize(window.innerWidth * SIZE, window.innerWidth * SIZE / ASPECT_RATIO);
 }
 
 function animate() {
@@ -136,11 +143,3 @@ function render() {
 
 }
 
-function onWindowResize() {
-
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize( window.innerWidth, window.innerHeight );
-
-}
