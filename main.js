@@ -18,7 +18,7 @@ function init() {
     const container = document.getElementById( '3D container' );
 
     camera = new THREE.PerspectiveCamera( 30, ASPECT_RATIO, 1, 5000 );
-    camera.position.set( 0, 3, 20);
+    camera.position.set( 0, 150, 500);
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color().setHSL(0,0,0.9);
@@ -29,7 +29,7 @@ function init() {
     const hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
     hemiLight.color.setHSL( 0.6, 1, 0.6 );
     hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
-    hemiLight.position.set( 0, 50, 0 );
+    hemiLight.position.set( 0, 250, 0 );
     scene.add( hemiLight );
 
     const hemiLightHelper = new THREE.HemisphereLightHelper( hemiLight, 10 );
@@ -40,7 +40,7 @@ function init() {
     const dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
     dirLight.color.setHSL( 0, 0, 1);
     dirLight.position.set( - 1, 1.75, 1 );
-    dirLight.position.multiplyScalar( 30 );
+    dirLight.position.multiplyScalar( 150 );
     scene.add( dirLight );
 
     dirLight.castShadow = true;
@@ -48,7 +48,7 @@ function init() {
     dirLight.shadow.mapSize.width = 2048;
     dirLight.shadow.mapSize.height = 2048;
 
-    const d = 50;
+    const d = 500;
 
     dirLight.shadow.camera.left = - d;
     dirLight.shadow.camera.right = d;
@@ -59,6 +59,7 @@ function init() {
     dirLight.shadow.bias = - 0.0001;
     
     // TODO: edit settings to suit final scene
+    // TODO: get shadows working
 
     const dirLightHelper = new THREE.DirectionalLightHelper( dirLight, 10 );
     scene.add( dirLightHelper );
@@ -70,7 +71,6 @@ function init() {
     groundMat.color.setHSL( 0, 0, 0.75 );
 
     const ground = new THREE.Mesh( groundGeo, groundMat );
-    ground.position.y = 0.5;
     ground.rotation.x = - Math.PI / 2;
     ground.receiveShadow = true;
     scene.add( ground );
@@ -79,12 +79,9 @@ function init() {
 
     const loader = new GLTFLoader();
 
-    loader.load( 'models/placeholder_model.glb', function ( gltf ) {
+    loader.load( 'models/FinalSquat.gltf', function ( gltf ) {
 
-        const mesh = gltf.scene.children[ 0 ];
-
-        const s = 1;
-        mesh.scale.set( s, s, s );
+        const mesh = gltf.scene;
 
         mesh.castShadow = true;
         mesh.receiveShadow = true;
@@ -92,7 +89,7 @@ function init() {
         scene.add( mesh );
 
         const mixer = new THREE.AnimationMixer( mesh );
-        mixer.clipAction( gltf.animations[ 0 ] ).setDuration( 1 ).play();
+        mixer.clipAction( gltf.animations[ 0 ] ).play();
         mixers.push( mixer );
 
     } );
@@ -110,8 +107,10 @@ function init() {
     window.addEventListener( 'resize', updateRendererSize );
 
     controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 100 ,0);
+    controls.update();
     controls.enablePan = false;
-    controls.maxPolarAngle = Math.PI/2 - 0.1;
+    controls.maxPolarAngle = Math.PI/2;
     // TODO: add in max/min values for zoom 
     // (may also need to edit max values for rotation)
 

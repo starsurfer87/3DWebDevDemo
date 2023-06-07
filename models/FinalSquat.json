@@ -1,0 +1,11 @@
+{
+	"FinalSquat": {
+		"version": 1,
+		"id": "FinalSquat",
+		"name": "1",
+		"kind": "Puppeteer",
+		"mood": null,
+		"postPlaybackMood": null,
+		"duration": 9.216666667
+	}
+}
