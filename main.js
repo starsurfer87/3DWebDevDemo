@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-add3D('models/FinalSquat.gltf', '3D container', 0.95)
-add3D('models/simple_model_large.glb', '3D container', 0.5)
-function add3D(filename, containerID, viewportSize) {
+add3D('models/FinalSquat.gltf', '3D container', 0.95, 1);
+add3D('models/simple_model_large.glb', '3D container', 0.5, 0.4);
+
+function add3D(filename, containerID, viewportSize, modelScale) {
 
 let camera, scene, renderer, controls;
 
@@ -85,6 +86,8 @@ function init() {
     loader.load(filename, function ( gltf ) {
 
         const mesh = gltf.scene;
+
+        mesh.scale.set( modelScale, modelScale, modelScale );
 
         mesh.castShadow = true;
         mesh.receiveShadow = true;
