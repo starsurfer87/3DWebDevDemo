@@ -1,3 +1,10 @@
-h1 {
-    color: blue;
+div {
+    display: flex;
+    justify-content: center;
+    padding: 5pt;
 }
+
+td {
+    padding: 5pt;
+}
+
