@@ -5,7 +5,7 @@ This demo will show you how to use the JavaScript library *three.js* to incorper
 ## Downloads and Imports
 To start with, you need to import the three.js library and the ```add3D``` function.
 
-Download the 3Dcomponent.js file and add it to the folder with your HTML and JavaScript files.
+Download the [3Dcomponent.js](https://github.com/starsurfer87/3DWebDevDemo/blob/main/3Dcomponent.js) file and add it to the folder with your HTML and JavaScript files.
 
 Add the following code to your HTML file inside the ```<head>``` tag, making sure that it is *before* the script tag that links your HTML file to your JavaScript file:
 ```
