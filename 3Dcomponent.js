@@ -33,8 +33,8 @@ function add3D(filename, containerID, viewportSize, modelScale) {
         hemiLight.position.set(0, 250, 0);
         scene.add(hemiLight);
 
-        const hemiLightHelper = new THREE.HemisphereLightHelper(hemiLight, 10);
-        scene.add(hemiLightHelper);
+        // const hemiLightHelper = new THREE.HemisphereLightHelper(hemiLight, 10);
+        // scene.add(hemiLightHelper);
 
         // DIRECTIONAL LIGHT 
 
@@ -59,17 +59,16 @@ function add3D(filename, containerID, viewportSize, modelScale) {
         dirLight.shadow.camera.far = 3500;
         dirLight.shadow.bias = - 0.0001;
 
-        // TODO: edit settings to suit final scene
         // TODO: get shadows working
 
-        const dirLightHelper = new THREE.DirectionalLightHelper(dirLight, 10);
-        scene.add(dirLightHelper);
+        // const dirLightHelper = new THREE.DirectionalLightHelper(dirLight, 10);
+        // scene.add(dirLightHelper);
 
         // GROUND
 
         const groundGeo = new THREE.PlaneGeometry(10000, 10000);
         const groundMat = new THREE.MeshLambertMaterial({ color: 0xffffff });
-        groundMat.color.setHSL(0, 0, 0.75);
+        groundMat.color.setHSL(0, 0, 0.3);
 
         const ground = new THREE.Mesh(groundGeo, groundMat);
         ground.rotation.x = - Math.PI / 2;
@@ -115,7 +114,6 @@ function add3D(filename, containerID, viewportSize, modelScale) {
         controls.enablePan = false;
         controls.maxPolarAngle = Math.PI / 2;
         // TODO: add in max/min values for zoom 
-        // (may also need to edit max values for rotation)
 
     }
 

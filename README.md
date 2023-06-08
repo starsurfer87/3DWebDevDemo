@@ -18,7 +18,7 @@ Add the following code to your HTML file inside the ```<head>``` tag, making sur
         }
     }
     </script>
-<script type="module" src="3D.js"></script>
+<script type="module" src="3Dcomponent.js"></script>
 ```
 
 Add the following import statement to the top of your JavaScript file:
