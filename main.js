@@ -2,20 +2,23 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+add3D('models/FinalSquat.gltf', '3D container', 0.95)
+add3D('models/simple_model_large.glb', '3D container', 0.5)
+function add3D(filename, containerID, viewportSize) {
+
 let camera, scene, renderer, controls;
 
 const mixers = [];
 
 const clock = new THREE.Clock();
 
-const SIZE = 0.95;
 const ASPECT_RATIO = 4/3;
 
 init();
 animate();
 
 function init() {
-    const container = document.getElementById( '3D container' );
+    const container = document.getElementById(containerID);
 
     camera = new THREE.PerspectiveCamera( 30, ASPECT_RATIO, 1, 5000 );
     camera.position.set( 0, 150, 500);
@@ -79,7 +82,7 @@ function init() {
 
     const loader = new GLTFLoader();
 
-    loader.load( 'models/FinalSquat.gltf', function ( gltf ) {
+    loader.load(filename, function ( gltf ) {
 
         const mesh = gltf.scene;
 
@@ -117,7 +120,7 @@ function init() {
 }
 
 function updateRendererSize() {
-    renderer.setSize(window.innerWidth * SIZE, window.innerWidth * SIZE / ASPECT_RATIO);
+    renderer.setSize(window.innerWidth * viewportSize, window.innerWidth * viewportSize / ASPECT_RATIO);
 }
 
 function animate() {
@@ -141,4 +144,4 @@ function render() {
     renderer.render( scene, camera );
 
 }
-
+}
