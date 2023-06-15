@@ -1,6 +1,6 @@
 # 3D Web Development Demo
 
-This demo will show you how to use the JavaScript library *three.js* to incorperate animated 3D models (in .glb or .gltf format) into a web page! You do not need to have any knowlendge of three.js, everything has been packaged into a single function that you can call in your own JavaScript file. However, if you are curious to learn more about three.js, you can find the documentation and a bunch of cool examples [here](https://threejs.org/).
+This demo will show you how to use the JavaScript library *three.js* to incorperate animated 3D models (in .glb or .gltf format) into a web page! You do not need to have any knowlendge of three.js, everything has been packaged into a single function that you can call in your own JavaScript file. However, if you are curious to learn more about three.js, you can find the documentation and a bunch of cool examples [here](https://threejs.org/). You can find public-domain models in glTF format to use at [Sketchfab](https://sketchfab.com/3d-models?features=downloadable&sort_by=-likeCount).
 
 ## Downloads and Imports
 To start with, you need to import the three.js library and the ```add3D``` function.
