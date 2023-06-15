@@ -56,10 +56,12 @@ function add3D(filename, containerID, viewportSize, modelScale) {
         dirLight.shadow.camera.top = d;
         dirLight.shadow.camera.bottom = - d;
 
-        dirLight.shadow.camera.far = 3500;
+        dirLight.shadow.camera.far = 1000;
         dirLight.shadow.bias = - 0.0001;
 
-        // TODO: get shadows working
+        // const shadowCamera = dirLight.shadow.camera;
+        // const shadowCameraHelper = new THREE.CameraHelper(shadowCamera);
+        // scene.add(shadowCameraHelper);
 
         // const dirLightHelper = new THREE.DirectionalLightHelper(dirLight, 10);
         // scene.add(dirLightHelper);
@@ -85,8 +87,11 @@ function add3D(filename, containerID, viewportSize, modelScale) {
 
             mesh.scale.set(modelScale, modelScale, modelScale);
 
-            mesh.castShadow = true;
-            mesh.receiveShadow = true;
+            gltf.scene.traverse(function (child) {
+                if (child.isMesh) {
+                  child.castShadow = true;
+                }
+             });
 
             scene.add(mesh);
 
@@ -113,7 +118,6 @@ function add3D(filename, containerID, viewportSize, modelScale) {
         controls.update();
         controls.enablePan = false;
         controls.maxPolarAngle = Math.PI / 2;
-        // TODO: add in max/min values for zoom 
 
     }
 
